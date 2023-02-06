@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  web-dev:
+    build: .
+    container_name: web-dev
+    volumes:
+      - type: bind
+        source: "$PWD/../"
+        target: /home/archie
+    stdin_open: true
+    tty: true
+    command: zsh
