@@ -1,9 +1,9 @@
 version: "3.3"
 
 services:
-  web-dev:
+  fe-dev:
     build: .
-    container_name: web-dev
+    container_name: fe-dev
     volumes:
       - type: bind
         source: "$PWD/../"
