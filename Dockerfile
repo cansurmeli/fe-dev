@@ -6,7 +6,7 @@ WORKDIR /tmp
 
 # Update & install whatever is needed
 RUN dnf update -y
-RUN dnf install -y git wget time which ca-certificates zsh gcc make util-linux-user sudo npm ncurses-devel npm pip hugo
+RUN dnf install -y git wget time which ca-certificates zsh gcc make util-linux-user sudo npm ncurses-devel npm pip hugo nodejs
 
 # Install Prettier for HTML/CSS formatting
 RUN npm install --save-dev --save-exact prettier
@@ -21,9 +21,9 @@ RUN useradd archie
 
 RUN usermod -aG wheel archie
 
-USER archie
+RUN passwd archie
 
-WORKDIR /home/archie
+#WORKDIR /home/archie
 
 #############
 # PIP STUFF #
@@ -36,7 +36,7 @@ WORKDIR /home/archie
 #################
 # SET-UP PREZTO #
 #################
-USER root
+#USER root
 
 # Switch the default shell to Zshell
 RUN chsh -s "$(which zsh)"

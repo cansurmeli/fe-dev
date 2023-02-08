@@ -7,7 +7,7 @@ services:
     volumes:
       - type: bind
         source: "$PWD/../"
-        target: /home/archie
+        target: /home/archie/app
     stdin_open: true
     tty: true
     command: zsh
