@@ -24,7 +24,13 @@ RUN dnf install -y git \
 										nodejs
 
 # Install NPM packages
-RUN npm install --save-dev --save-exact prettier typescript
+RUN npm install --save-dev \
+								--save-exact \
+								--global \
+								prettier \
+								typescript \
+								eslint \
+								vint
 
 # Grab Vim fron source instead and compile it with Python3 support
 RUN git clone https://github.com/vim/vim.git \
@@ -55,6 +61,8 @@ RUN chmod +x init_zprezto.sh
 
 USER archie
 
+#		Remove default Zsh config file so that
+# zprezto installation doesn't have a problem.
 RUN rm /home/$(whoami)/.zshrc
 
 RUN ./init_zprezto.sh
@@ -76,3 +84,4 @@ RUN echo 'alias python=python3' >> /home/$(whoami)/.zshrc
 # Grab my Vim config
 RUN git clone --recursive https://gitlab.cansurmeli.com/can/vim-config /home/$(whoami)/.vim
 
+WORKDIR /home/archie
